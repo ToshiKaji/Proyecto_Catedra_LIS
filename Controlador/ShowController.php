@@ -1,5 +1,5 @@
 <?php
-class Controller {
+class ShowController {
     private $model;
     private $view;
     
@@ -9,6 +9,7 @@ class Controller {
     }
     
     public function index() {
+        $this->model->getConnection();
         $stmt = $this->model->getRecords();
         $this->view->render($stmt);
     }
