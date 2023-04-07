@@ -1,6 +1,6 @@
 <?php
 class View {
-    public function render($stmt) {
+    public function Render($stmt) {
         echo "<table>";
         echo "<tr><th>Codigo</th><th>Rubro</th></tr>";
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -8,6 +8,10 @@ class View {
         }
         echo "</table>";
     }
-}
 
-?>
+    public function RenderLogin()
+    {
+        echo "SEXOOOO";
+
+    }
+}
