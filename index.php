@@ -1,4 +1,5 @@
 <?php
+require_once("config.php");
  require_once("Controlador/index.php");
 require_once("Modelo/index.php");
 require_once("Vista/ClaseView.php");

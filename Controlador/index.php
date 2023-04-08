@@ -18,11 +18,26 @@ class Controller {
         $this->view->Render($stmt);
     }
 
-    public function Nuevo ()
+    public function Registro()
     {
         require_once('Vista/index.php');
-        $this->view->RenderLogin();
+        $this->view->RenderRegistro();
     }
+
+    public function Ingresar_cliente()
+    { $this->model->getConnection();
+        $usercli=$_REQUEST['usercli'];
+        $pwcli=$_REQUEST['pwcli'];
+        $nombre=$_REQUEST['nombre'];
+        $apellido=$_REQUEST['apellido'];
+        $dui=$_REQUEST['dui'];
+        $this->model->Ingresar_clientes($usercli,$pwcli,$nombre,$apellido,$dui);
+        header("location:".urlsite);
+
+
+    }
+
+
 }
 
 

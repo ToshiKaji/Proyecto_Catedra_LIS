@@ -26,23 +26,16 @@ class Modelo {
        return $stmt;
     }
 
-    public function Insertar_clientes($tabla,$user,$password,$nombre,$apellido,$dui)
+    public function Ingresar_clientes($user,$password,$nombre,$apellido,$dui)
     {
-        $query="INSERT INTO $tabla (UserCli,PwCli,Nombre,Apellido,DUI) VALUES (:usercli,:pwcli,:nombre,:apellido,:dui)";
-    
+        $query='INSERT INTO clientes (UserCli,PwCli,Nombre,Apellido,DUI) VALUES (:usercli,:pwcli,:nombre,:apellido,:dui)';
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':usercli', $user);
         $stmt->bindParam(':pwcli', $password);
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':apellido', $apellido);
         $stmt->bindParam(':dui', $dui);
-        
-    
-        if ($stmt->execute()) {
-            echo "El cliente fue registrado de forma exitosa";
-        } else {
-            echo "Ha ocurrido un error al registrar al cliente.";
-        }
+        $stmt->execute();
 
     }
 

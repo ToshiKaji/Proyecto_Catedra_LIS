@@ -7,11 +7,14 @@ class View {
             echo "<tr><td>" . $row['CodRubro'] . "</td><td>" . $row['Rubro'] . "</td>";
         }
         echo "</table>";
+        require_once('Layout/Footer.php');
     }
 
-    public function RenderLogin()
+    public function RenderRegistro()
     {
-        echo "SEXOOOO";
+        require_once('Registro.php');
+        require_once('Layout/Footer.php');
+
 
     }
 }
