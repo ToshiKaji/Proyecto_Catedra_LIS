@@ -1,5 +1,7 @@
+CREATE DATABASE lis_pro;
+
 CREATE TABLE `OfertasCupones` (
-	`EmpresaOff` varchar(255) NOT NULL DEFAULT false,
+	`EmpresaOff` varchar(100) NOT NULL DEFAULT false,
 	`Estado` bool NOT NULL DEFAULT false,
 	`Vigencia` bool NOT NULL DEFAULT false,
 	`Condiciones` TEXT NOT NULL,
@@ -9,7 +11,7 @@ CREATE TABLE `OfertasCupones` (
 	`PrecioNormal` FLOAT NOT NULL,
 	`PrecioOferta` FLOAT NOT NULL,
 	`LimiteCupones` int,
-	`CodOferta` varchar(255) NOT NULL,
+	`CodOferta` varchar(100) NOT NULL,
 	`Precio` FLOAT NOT NULL DEFAULT false,
 	`CantVendida` int NOT NULL DEFAULT false,
 	`TotalIngresos` FLOAT NOT NULL DEFAULT false,
@@ -18,46 +20,46 @@ CREATE TABLE `OfertasCupones` (
 );
 
 CREATE TABLE `Clientes` (
-	`UserCli` varchar(255) NOT NULL UNIQUE,
-	`PwCli` varchar(255) NOT NULL UNIQUE,
+	`UserCli` varchar(100) NOT NULL UNIQUE,
+	`PwCli` varchar(100) NOT NULL UNIQUE,
 	`Nombre` TEXT NOT NULL,
 	`Apellido` TEXT NOT NULL,
-	`DUI` varchar(255) NOT NULL,
+	`DUI` varchar(100) NOT NULL,
 	PRIMARY KEY (`UserCli`)
 );
 
 CREATE TABLE `Empresas` (
-	`CodRubro` varchar(255)NOT NULL,
-	`UserEmpr` varchar(255) NOT NULL UNIQUE,
-	`PwEmpr` varchar(255) NOT NULL UNIQUE,
-	`Email` varchar(255) NOT NULL UNIQUE,
-	`NmEmpresa` varchar(255) NOT NULL,
-	`Direccion` varchar(255) NOT NULL,
-	`Telefono` varchar(255) NOT NULL,
-	`NmContacto` varchar(255) NOT NULL,
+	`CodRubro` varchar(100)NOT NULL,
+	`UserEmpr` varchar(100) NOT NULL UNIQUE,
+	`PwEmpr` varchar(100) NOT NULL UNIQUE,
+	`Email` varchar(100) NOT NULL UNIQUE,
+	`NmEmpresa` varchar(100) NOT NULL,
+	`Direccion` varchar(100) NOT NULL,
+	`Telefono` varchar(100) NOT NULL,
+	`NmContacto` varchar(100) NOT NULL,
 	`Comision` DECIMAL(4) NOT NULL,
 	PRIMARY KEY (`UserEmpr`)
 );
 
 CREATE TABLE `CuponesGenerados` (
-	`Cliente` varchar(255) NOT NULL,
-	`DUI_Cliente` varchar(255) NOT NULL,
-	`Cupon` varchar(255) NOT NULL,
-	`CCgenerado` varchar(255) NOT NULL UNIQUE,
+	`Cliente` varchar(100) NOT NULL,
+	`DUI_Cliente` varchar(100) NOT NULL,
+	`Cupon` varchar(100) NOT NULL,
+	`CCgenerado` varchar(100) NOT NULL UNIQUE,
 	`EstadoCanjeo` bool NOT NULL
 );
 
 CREATE TABLE `Rubros` (
-	`CodRubro` varchar(255) NOT NULL,
-	`Rubro` TEXT(255) NOT NULL,
+	`CodRubro` varchar(100) NOT NULL,
+	`Rubro` TEXT(100) NOT NULL,
 	PRIMARY KEY (`CodRubro`)
 );
 
 CREATE TABLE `Empleado` (
-	`Empresa` varchar(255) NOT NULL,
-	`Nombre` varchar(255) NOT NULL,
-	`Apellido` varchar(255) NOT NULL,
-	`Email` varchar(255) NOT NULL UNIQUE
+	`Empresa` varchar(100) NOT NULL,
+	`Nombre` varchar(100) NOT NULL,
+	`Apellido` varchar(100) NOT NULL,
+	`Email` varchar(100) NOT NULL UNIQUE
 );
 
 ALTER TABLE `OfertasCupones` ADD CONSTRAINT `OfertasCupones_fk0` FOREIGN KEY (`EmpresaOff`) REFERENCES `Empresas`(`UserEmpr`);
