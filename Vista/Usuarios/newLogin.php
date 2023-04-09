@@ -50,5 +50,10 @@
                 </div>
             </div>
         </div>
+        <footer>
+            <?php
+                include_once('../Layout/Footer.php');
+            ?>
+        </footer>
     </body>
 </html>

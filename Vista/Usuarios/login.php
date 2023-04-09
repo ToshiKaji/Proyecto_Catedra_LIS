@@ -15,12 +15,9 @@
             ?>
             </header>
             <div class="row">
-                <div class="col-md-5 py-5">
-                    <img src="img/comprasLog.png" alt="Carrito de compras" style="width: 50rem; position:absolute; bottom:0px; left:20px;">
-                </div>
-                <div class="col-md-7 py-5 d-flex flex-column justify-content-center align-items-center"> 
+                <div class="col-md d-flex flex-column justify-content-center align-items-center"> 
                     <br><br><br><br><br>
-                    <div class="card" style="width: 28rem;">
+                    <div class="card mb-5" style="width: 28rem;">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <form action="index.php" method="get">
                                 <h1 class="mb-4 text-center py-2">Max Cupones</h1>
@@ -32,16 +29,13 @@
                             </form>
                         </div>
                     </div>
-                    <br>
-                    <!--
-                    <div class="card" style="width: 28rem;">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <label for="">¿No tienes cuenta? <a href="newLogin.php">Regístrate</a></label>
-                        </div>
-                    </div>
-                    -->
                 </div>
             </div>
         </div>
+        <footer>
+            <?php
+                include_once('../Layout/Footer.php');
+            ?>
+        </footer>
     </body>
 </html>
