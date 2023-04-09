@@ -48,14 +48,7 @@ class Modelo {
         $stmt->bindParam(':psd', $psd);
         $stmt->execute();
         $cliente = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($cliente)
-        {
-            $_SESSION['cliente'] = $cliente['Nombre'];
-            header("location:../Cupones/prueba.php");
-        }
-        else{
-            echo "El correo y/o la contraseña no son válidos.";
-        }
+        return $cliente;
     }
 
     

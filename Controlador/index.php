@@ -36,7 +36,7 @@ class Controller {
         $apellido=$_REQUEST['apellido'];
         $dui=$_REQUEST['dui'];
         $this->model->Ingresar_clientes($usercli,$correo,$pwcli,$nombre,$apellido,$dui);
-        header("location:../Cupones/prueba.php");
+        header("location:../Cupones/CuponeraSession.php");
     }
 
     public function Validar_cliente()
@@ -44,7 +44,25 @@ class Controller {
         $this->model->getConnection();
         $correo=$_REQUEST['correo'];
         $pwcli=$_REQUEST['contrasena'];
-        $this->model->Validar_clientes($correo,$pwcli);
+        
+        if($this->model->Validar_clientes($correo,$pwcli))
+        {
+            $cliente = $this->model->Validar_clientes($correo,$pwcli);
+            $_SESSION['cliente'] = $cliente['Nombre'];
+            header("location:../Cupones/CuponeraSession.php");
+        }
+        else{
+            echo "<script>alert('El correo y/o la contraseña no son válidos.');
+            window.location.href='../Usuarios/login.php';</script>";
+
+        }
+    }
+
+    public function CerraSesion()
+    {
+        session_unset();
+        session_destroy();
+        header("location:../Cupones/Inicio.php");
     }
 
 }

@@ -41,12 +41,6 @@
                         </div>
                     </div>
                     <br>
-                    <!--
-                    <div class="card py-1" style="width: 28rem;">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                        <label for="">¿Ya tienes cuenta? <a href="login.php">Entra</a></label>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>

@@ -26,6 +26,8 @@
                                 <input type="password" name="contrasena" class="form-control mb-3" placeholder="Contraseña" style="width:22rem;" required>
                                 <button type="submit" name="entrar" class="btn btn-danger text-light mb-4" style="border-radius:20px; width:22rem;">Iniciar sesión</button>
                                 <input type="hidden" name="m" value="Validar_cliente">
+                                <h6 class="text-center">ó</h6>
+                                <a href="#" target="_blank"><h6 class="text-center text-dark">¿Olvidaste tu contraseña?</h6></a>
                             </form>
                         </div>
                     </div>

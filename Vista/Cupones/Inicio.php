@@ -28,7 +28,6 @@
                 <div class="carousel-caption text-start">
                   <h1>Disfruta de excelentes servicios <br> sin preocuparte por tu dinero</h1>
                   <p>Cupones de descuento de spa, restaurantes, parques de diversiones, cine y sauna.</p>
-                  <p><a class="btn btn-lg btn-warning" href="#">Ver ofertas</a></p>
                 </div>
               </div>
             </div>
@@ -48,7 +47,6 @@
                   <div class="carousel-caption text-end">
                     <h1>Desde de artículos hogareños hasta <br> artículos de belleza</h1>
                     <p>Contamos con cupones de descuento para maquillaje, salones de belleza, <br> tratamientos, ¡y más!</p>
-                    <p><a class="btn btn-lg btn-warning" href="#">Ver ofertas</a></p>
                   </div>
                 </div>
             </div>
@@ -69,3 +67,4 @@
       ?>
     </footer>
 </body>
+</html>
