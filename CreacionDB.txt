@@ -21,10 +21,13 @@ CREATE TABLE `OfertasCupones` (
 
 CREATE TABLE `Clientes` (
 	`UserCli` varchar(100) NOT NULL UNIQUE,
-	`PwCli` varchar(100) NOT NULL UNIQUE,
+    `Correo` varchar(100) NOT NULL UNIQUE,
+	`PwCli` varchar(100) NOT NULL,
 	`Nombre` TEXT NOT NULL,
 	`Apellido` TEXT NOT NULL,
-	`DUI` varchar(100) NOT NULL,
+	`DUI` varchar(100) NOT NULL UNIQUE,
+    `HashVer` varchar(100) NOT NULL UNIQUE,
+    `Activo` int(1) NOT NULL DEFAULT 0,
 	PRIMARY KEY (`UserCli`)
 );
 
@@ -61,6 +64,7 @@ CREATE TABLE `Empleado` (
 	`Apellido` varchar(100) NOT NULL,
 	`Email` varchar(100) NOT NULL UNIQUE
 );
+
 
 ALTER TABLE `OfertasCupones` ADD CONSTRAINT `OfertasCupones_fk0` FOREIGN KEY (`EmpresaOff`) REFERENCES `Empresas`(`UserEmpr`);
 
