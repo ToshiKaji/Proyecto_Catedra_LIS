@@ -20,8 +20,8 @@
                     <div class="card py-2" style="width: 28rem;">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <form method="get" action="index.php">
-                                <h1 class="mb-2 text-center">Max Cupones</h1>
-                                <h6 class="mb-2 text-center py-1">Regístrate para comprar nuestros productos</h6>
+                                <h1 class="mb-2 text-center">La Cuponera</h1>
+                                <h6 class="mb-2 text-center py-1 text-secondary">Regístrate para comprar nuestros productos</h6>
                                 <input type="text" name="nombre" class="form-control mb-2" placeholder="Nombre" 
                                 style="width:22rem;" required>
                                 <input type="text" name="apellido" class="form-control mb-2" placeholder="Apellido" 
@@ -34,13 +34,15 @@
                                 class="form-control mb-2" placeholder="Correo eléctronico" style="width:22rem;" required>
                                 <input type="password" name="contrasena" id="contrasena" class="form-control mb-3" placeholder="Contraseña" 
                                 style="width:22rem;" required>
+                                <p class="mb-3 text-center py-1 text-secondary">Antes de registrarte se te enviará<br> un correo para que verifiques tu cuenta.</p>
                                 <button type="submit" name="registrar" class="btn btn-danger text-light mb-2" 
-                                style="border-radius:20px; width:22rem;">Registrarse</button>
+                                style="border-radius:20px; width:22rem;">Enviar correo de verificación</button>
                                 <input type="hidden" name="m" value="Ingresar_cliente">
+                                <hr>
+                                <h6 class="text-center text-secondary">¿Ya tienes cuenta? <a href="../Usuarios/login.php">Inicia sesión</a></h6>
                             </form>
                         </div>
                     </div>
-                    <br>
                 </div>
             </div>
         </div>

@@ -17,7 +17,7 @@
                 <hr class="bg-light">
                 <div class="row">
                         <div class="col-md-7 text-light" style="padding-top:20px;">
-                                <p class="h4 mb-4">Max Cupones</p> 
+                                <p class="h4 mb-4">La Cuponera</p> 
                                 <p class="text-justify">
                                         Somos una empresa que busca satisfacer y ofrecer los mejores descuentos
                                         a nuestros clientes, contando con la opinión de cada uno y asegurando
@@ -33,7 +33,7 @@
                         </div>
                 </div>
                 <div class="text-light bg-secondary text-center p-4">
-                        © 2023 Copyright
+                        © 2023 Copyright: La Cuponera
                 </div>
         </div>
 </footer>  
