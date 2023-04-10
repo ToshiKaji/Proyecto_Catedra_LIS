@@ -68,6 +68,7 @@ class Controller {
             $linkV = "http://localhost:8080/Proyecto_Catedra_LIS/Vista/Usuarios/Activacion.php?email=".$correo;
 
             $mail->isHTML(true);
+            $mail->CharSet = 'UTF-8';
             $mail->Subject = 'Verifica tu cuenta';
             $mail->Body = "Buen día, ".$nombre.".
             <br/>Para disfrutar de los cupones de descuento de La Cuponera primero debes verificar tu cuenta,
@@ -172,6 +173,7 @@ class Controller {
                 $mail->addAddress($correo);
 
                 $mail->isHTML(true);
+                $mail->CharSet = 'UTF-8';
                 $mail->Subject = 'Cambio de Contraseña';
                 $mail->Body = "Buen día.
                 <br/>Parece que perdiste tu cuenta, tu solicitud de cambio de contraseña está lista.<br>
