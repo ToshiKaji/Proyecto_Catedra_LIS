@@ -11,7 +11,9 @@
                                 <img style="padding-right:5px;" src="../Layout/img/facebook.png" alt="">
                                 <img style="padding-right:5px;" src="../Layout/img/gorjeo.png" alt="">
                                 <img style="padding-right:5px;" src="../Layout/img/tik-tok.png" alt="">
+                                <a href="https://github.com/ToshiKaji/Proyecto_Catedra_LIS" target="_blank">
                                 <img style="padding-right:5px;" src="../Layout/img/github.png" alt="">
+                                </a>
                         </div>
                 </div>
                 <hr class="bg-light">
