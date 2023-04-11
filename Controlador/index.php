@@ -20,19 +20,11 @@ class Controller {
         $this->view = $view;
     }
 
-    //funcion de prueba para mostrar dato, muestra datos de la tabla de 'rubros'
-     function Index() {
-        
-        $this->model->getConnection();
-     $stmt = $this->model->Mostrar();
-        require_once('Vista/index.php');
-        $this->view->Render($stmt);
-    }
-
-    public function Registro()
+    //muestra pagina inicio en el primer index
+    function Index()
     {
-        require_once('Vista/index.php');
-        $this->view->RenderRegistro();
+        $this->model->getConnection();
+        header("location:./Vista/Cupones/Inicio.php");
     }
 
     //Registra
@@ -40,59 +32,70 @@ class Controller {
     { 
         $this->model->getConnection();
 
-        try
-        {
-            
-            $mail = new PHPMailer(true);
+            try
+            {
+                
+                $mail = new PHPMailer(true);
 
-            $usercli=$_REQUEST['user'];
-            $correo=$_REQUEST['correo'];
-            $pwcli=hash('sha256', $_REQUEST['contrasena']);
-            $nombre=$_REQUEST['nombre'];
-            $apellido=$_REQUEST['apellido'];
-            $dui=$_REQUEST['dui'];
-            $hashCode = md5(rand(0,1000));
+                $usercli=$_REQUEST['user'];
+                $correo=$_REQUEST['correo'];
+                $pwcli=hash('sha256', $_REQUEST['contrasena']);
+                $nombre=$_REQUEST['nombre'];
+                $apellido=$_REQUEST['apellido'];
+                $dui=$_REQUEST['dui'];
+                $hashCode = md5(rand(0,1000));
 
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'ventas.envio2023@gmail.com';
-            $mail->Password = 'lqkqzogqvlitwwbi';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'ventas.envio2023@gmail.com';
+                $mail->Password = 'lqkqzogqvlitwwbi';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
 
-            $mail->setFrom('ventas.envio2023@gmail.com', 'La Cuponera');
-            //se debe cambiar correo para cada cliente
-            $mail->addAddress($correo);
-            $linkV = "http://localhost:8080/Proyecto_Catedra_LIS/Vista/Usuarios/Activacion.php?email=".$correo;
+                $mail->setFrom('ventas.envio2023@gmail.com', 'La Cuponera');
+                //se debe cambiar correo para cada cliente
+                $mail->addAddress($correo);
+                $linkV = "http://localhost:8080/Proyecto_Catedra_LIS/Vista/Usuarios/Activacion.php?email=".$correo;
 
-            $mail->isHTML(true);
-            $mail->CharSet = 'UTF-8';
-            $mail->Subject = 'Verifica tu cuenta';
-            $mail->Body = "Buen día, ".$nombre.".
-            <br/>Para disfrutar de los cupones de descuento de La Cuponera primero debes verificar tu cuenta,
-            si estás de acuerdo, presiona el link de verificar que se muestra abajo. <br>
+                $mail->isHTML(true);
+                $mail->CharSet = 'UTF-8';
+                $mail->Subject = 'Verifica tu cuenta';
+                $mail->Body = "Buen día, ".$nombre.".
+                <br/>Para disfrutar de los cupones de descuento de La Cuponera primero debes verificar tu cuenta,
+                si estás de acuerdo, presiona el link de verificar que se muestra abajo. <br>
 
-            Tu código de verificación es: <b>".$hashCode."</b>.<br>
-            Debes ingresarlo en el siguiente link: ".$linkV."
+                Tu código de verificación es: <b>".$hashCode."</b>.<br>
+                Debes ingresarlo en el siguiente link: ".$linkV."
 
-            <br><br>Los servicios de <b>La Cuponera</b> están disponibles las 24 horas del día,
-            escoge los mejores descuento en <b>La Cuponera</b>.";
-            
-            $mail->send();
+                <br><br>Los servicios de <b>La Cuponera</b> están disponibles las 24 horas del día,
+                escoge los mejores descuento en <b>La Cuponera</b>.";
 
-            $this->model->Ingresar_clientes($usercli,$correo,$pwcli,$nombre,$apellido,$dui,$hashCode,0);
+            if($this->model->Validar_Repeticiones($correo,$dui,$usercli))
+            {
+                echo "<script> alert('Ya existe una cuenta registrada con estas credenciales.')
+                document.location.href='../Usuarios/newLogin.php';
+                </script>";
+            }
+            else
+            {
+                $mail->send();
 
-            echo "<script> alert('Correo enviado, revisa tu correo.')
-            document.location.href='../Cupones/Inicio.php';
-            </script>";
-            
+                $this->model->Ingresar_clientes($usercli,$correo,$pwcli,$nombre,$apellido,$dui,$hashCode,0);
+
+                echo "<script> alert('Correo enviado, revisa tu correo.')
+                document.location.href='../Cupones/Inicio.php';
+                </script>";
+
+            }
+                
         }
         catch(Exception $e)
         {
             echo 'Mensaje: ' . $mail->ErrorInfo;
         }
+        
     }
 
     public function ActivarCuenta()

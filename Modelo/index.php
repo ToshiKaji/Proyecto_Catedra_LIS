@@ -18,14 +18,6 @@ class Modelo {
         return $this->conn;
     }
 
-    //Ejemplo de mostrar
-    public function Mostrar() {
-        $query = 'SELECT * FROM rubros';
-        $stmt = $this->conn->prepare($query);
-       $stmt->execute(); 
-       return $stmt;
-    }
-
     //ingraso user a bd
     public function Ingresar_clientes($user,$correo,$password,$nombre,$apellido,$dui,$hashver,$activo)
     {
@@ -41,6 +33,19 @@ class Modelo {
         $stmt->bindParam(':activo', $activo);
         $stmt->execute();
 
+    }
+
+    //para comparar si ya o no existen ese user, correo o duis registrados en la bd
+    public function Validar_Repeticiones($correo,$dui,$user)
+    {
+        $query="SELECT * FROM Clientes WHERE Correo=:correo AND DUI=:dui AND UserCli=:user";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':correo', $correo);
+        $stmt->bindParam(':dui', $dui);
+        $stmt->bindParam(':user', $user);
+        $stmt->execute();
+        $cliente = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $cliente;
     }
 
     //devuelve si el codigo existe en algun usuario
