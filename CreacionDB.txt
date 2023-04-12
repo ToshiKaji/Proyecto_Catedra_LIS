@@ -1,24 +1,5 @@
 CREATE DATABASE lis_pro;
 
-CREATE TABLE `OfertasCupones` (
-	`EmpresaOff` varchar(100) NOT NULL DEFAULT false,
-	`Estado` bool NOT NULL DEFAULT false,
-	`Vigencia` bool NOT NULL DEFAULT false,
-	`Condiciones` TEXT NOT NULL,
-	`FInicio` DATE NOT NULL,
-	`FFinal` DATE NOT NULL,
-	`Oferta` TEXT NOT NULL,
-	`PrecioNormal` FLOAT NOT NULL,
-	`PrecioOferta` FLOAT NOT NULL,
-	`LimiteCupones` int,
-	`CodOferta` varchar(100) NOT NULL,
-	`Precio` FLOAT NOT NULL DEFAULT false,
-	`CantVendida` int NOT NULL DEFAULT false,
-	`TotalIngresos` FLOAT NOT NULL DEFAULT false,
-	`CargoServicio` FLOAT NOT NULL DEFAULT false,
-	PRIMARY KEY (`CodOferta`)
-);
-
 CREATE TABLE `Clientes` (
 	`UserCli` varchar(100) NOT NULL UNIQUE,
     `Correo` varchar(100) NOT NULL UNIQUE,
@@ -65,13 +46,30 @@ CREATE TABLE `Empleado` (
 	`Email` varchar(100) NOT NULL UNIQUE
 );
 
+CREATE TABLE  `cupones` (
+  `id_cupon` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo_oferta` varchar(100) NOT NULL,
+  `descripcion` varchar(200) NOT NULL,
+  `precio_regular` decimal(7,2) NOT NULL,
+  `porcentaje_oferta` decimal(7,2) NOT NULL,
+  `empresa` varchar(100) NOT NULL,
+  `fecha_ini_oferta` datetime NOT NULL,
+  `fecha_fin_oferta` datetime NOT NULL,
+  `fecha_limite` datetime NOT NULL,
+  `porc_cargo_servicio` decimal(3,2) NOT NULL,
+  `condiciones` varchar(250) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `cantidad_total` int(11) NOT NULL,
+  `id_rubro` int(11) NOT NULL,
+  `img` varchar(250) NOT NULL,
+  `estado` int(11) NOT NULL,
+  PRIMARY KEY (`id_cupon`)
+)
 
-ALTER TABLE `OfertasCupones` ADD CONSTRAINT `OfertasCupones_fk0` FOREIGN KEY (`EmpresaOff`) REFERENCES `Empresas`(`UserEmpr`);
+
 
 ALTER TABLE `Empresas` ADD CONSTRAINT `Empresas_fk0` FOREIGN KEY (`CodRubro`) REFERENCES `Rubros`(`CodRubro`);
 
 ALTER TABLE `CuponesGenerados` ADD CONSTRAINT `CuponesGenerados_fk0` FOREIGN KEY (`Cliente`) REFERENCES `Clientes`(`UserCli`);
-
-ALTER TABLE `CuponesGenerados` ADD CONSTRAINT `CuponesGenerados_fk1` FOREIGN KEY (`Cupon`) REFERENCES `OfertasCupones`(`CodOferta`);
 
 ALTER TABLE `Empleado` ADD CONSTRAINT `Empleado_fk0` FOREIGN KEY (`Empresa`) REFERENCES `Empresas`(`UserEmpr`);

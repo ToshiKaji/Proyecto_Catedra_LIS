@@ -1,10 +1,10 @@
 <?php
 
 class Modelo {
-    private $host = "localhost:33060";
+    private $host = "localhost";
     private $db_name = "lis_pro";
     private $username = "root";
-    private $password = "123456";
+    private $password = "";
     public $conn;
 
     public function getConnection() {
@@ -99,6 +99,26 @@ class Modelo {
         $stmt->bindParam(':cod_gen', $cod_gen);
         $stmt->execute();
     }
-    
+    public function listaCupones($estado, $id_rubro){
+
+        if($id_rubro == null || $id_rubro == 0){
+            $query="SELECT * FROM cupones where estado=:estado";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':estado', $estado);
+        }else{
+            $query="SELECT * FROM cupones where estado=:estado AND id_rubro=:id_rubro";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':estado', $estado);
+            $stmt->bindParam(':id_rubro', $id_rubro);
+        }
+
+
+        $stmt->execute();
+        $arrData = [];
+        while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $arrData[] = $fila;
+        }
+        return $arrData;
+    }
 }
 ?>
