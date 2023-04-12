@@ -67,6 +67,7 @@ CREATE TABLE  `cupones` (
 )
 
 
+
 ALTER TABLE `Empresas` ADD CONSTRAINT `Empresas_fk0` FOREIGN KEY (`CodRubro`) REFERENCES `Rubros`(`CodRubro`);
 
 ALTER TABLE `CuponesGenerados` ADD CONSTRAINT `CuponesGenerados_fk0` FOREIGN KEY (`Cliente`) REFERENCES `Clientes`(`UserCli`);
