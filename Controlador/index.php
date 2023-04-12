@@ -127,11 +127,11 @@ class Controller {
             {
                 $cliente = $this->model->Validar_clientes($correo,$pwcli);
                 $_SESSION['cliente'] = $cliente['Nombre'];
-                header("location:../Cupones/CuponeraSession.php");
+                header("location:../Usuarios/index.php?m=inicioCupones&f=0");
             }
             else{
                 echo "<script>alert('El correo y/o la contraseña no son válidos.');
-                window.location.href='../Usuarios/login.php';</script>"; 
+                window.location.href='../Usuarios/login.php';</script>";
 
             }
         }
@@ -208,6 +208,17 @@ class Controller {
             echo "<script>alert('El correo que ingresaste no existe o no está activo.');
             window.location.href='../Usuarios/recuperacionCorreo.php';</script>";
         }
+    }
+    public function inicioCupones(){
+        session_start();
+        $this->model->getConnection();
+        $data = $this->model->listaCupones(0, $_GET['f']);
+        $_SESSION['categoria'] = $_GET['f'];
+        $_SESSION['cupones'] = $data;
+        header("location:../Cupones/CuponeraSession.php");
+    }
+    public function getCupones($logeado){
+        return "LISTADO";
     }
 
 }
