@@ -37,16 +37,18 @@ if (!isset($_SESSION['cliente'])) {
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link ms-5" data-bs-toggle="pill" style="color:#FFFFFF;" href="#">Inicio</a>
+                            <a class="nav-link ms-5" style="color:#FFFFFF;"
+                               href="../Usuarios/index.php?m=inicioCupones&f=0">Inicio</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:#FFFFFF;" href="../Usuarios/index.php?m=inicioCupones&f=1">Belleza</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color:#FFFFFF;" href="#">Belleza</a>
+                            <a class="nav-link" style="color:#FFFFFF;" href="../Usuarios/index.php?m=inicioCupones&f=2">Lugares</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color:#FFFFFF;" href="">Lugares</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color:#FFFFFF;" href="">Servicios</a>
+                            <a class="nav-link" style="color:#FFFFFF;" href="../Usuarios/index.php?m=inicioCupones&f=3">Servicios</a>
                         </li>
                     </ul>
                     <form action="index.php" method="get" class="ms-auto">
@@ -57,58 +59,72 @@ if (!isset($_SESSION['cliente'])) {
             </div>
         </nav>
     </header>
-
-    <div class="container ">
-        <div class="row">
-            <div class="col-3">
-                <h3>Filtrar por:</h3>
-                <form action="../Usuarios/index.php" method="get">
-                    <select class="form-select" name="f" aria-label="Default select example">
-                        <option <?= $_SESSION['categoria'] == 0 ? 'selected' : ''; ?> >Todos</option>
-                        <option <?= $_SESSION['categoria'] == 1 ? 'selected' : ''; ?> value="1">Belleza</option>
-                        <option <?= $_SESSION['categoria'] == 2 ? 'selected' : ''; ?> value="2">Lugares</option>
-                        <option <?= $_SESSION['categoria'] == 3 ? 'selected' : ''; ?> value="3">Servicios</option>
-                    </select>
-                    <input type="hidden" name="m" value="inicioCupones">
-                    <input type="submit" class="btn btn-dark mt-2 col-12">
-                </form>
+    <div class="container">
+        <div class="row m-2">
+            <div class="col">
+                <h4>Filtrando cupones por:
+                    <?php
+                    switch ($_SESSION['categoria']) {
+                        case 1:
+                        {
+                            echo 'Belleza';
+                            break;
+                        }
+                        case 2:
+                        {
+                            echo 'Lugares';
+                            break;
+                        }
+                        case 3:
+                        {
+                            echo 'Servicios';
+                            break;
+                        }
+                        default :
+                        {
+                            echo 'Todos';
+                            break;
+                        }
+                    }
+                    ?>
+                </h4>
             </div>
         </div>
 
-    </div>
-    <hr>
-    <div class="row m-2">
+        <hr>
 
+        <div class="row m-2">
+            <?php
+            $data_recibida = $_SESSION['cupones']; //Cupones generados (Traidos desde la BD)
 
-        <?php
-        $data_recibida = $_SESSION['cupones']; //Cupones generados (Traidos desde la BD)
+            foreach ($data_recibida as $cupon) { ?>
+                <div class="card bg-dark text-white m-2 p-1 border-5" style="width: 18rem;">
 
-        foreach ($data_recibida as $cupon) { ?>
-            <div class="card bg-dark text-white m-2 p-1 border-5" style="width: 18rem;">
+                    <img src="../Layout/img/cupon.png" class="card-img" alt="Cupon">
 
-                <img src="../Layout/img/cupon.png" class="card-img" alt="Cupon">
+                    <hr>
+                    <div class="card-body p-1">
+                        <h5 class="card-title"><?= utf8_encode($cupon['titulo_oferta']) ?></h5>
+                        <p class="card-text"><?= utf8_encode($cupon['descripcion']) ?></p>
+                        <p class="card-text">Precio Regular: $<?= utf8_encode($cupon['precio_regular']) ?></p>
+                        <p class="card-text">Descuento: <?= utf8_encode($cupon['porcentaje_oferta']) ?>%</p>
+                        <p class="card-text text-success">Nuevo valor:
+                            $<?= number_format($cupon['precio_regular'] - ($cupon['precio_regular'] * ($cupon['porcentaje_oferta'] * 0.01)),
+                                2)
+                            ?></p>
+                        <p class="card-text">Fecha
+                            Límite: <?= date_format(date_create($cupon['fecha_limite']), 'd/m/Y') ?></p>
+                        <p class="card-text">Stock: <?= utf8_encode($cupon['cantidad']) ?></p>
+                    </div>
+                    <a href="#" class="btn btn-success">Comprar</a>
 
-                <hr>
-                <div class="card-body p-1">
-                    <h5 class="card-title"><?= utf8_encode($cupon['titulo_oferta']) ?></h5>
-                    <p class="card-text"><?= utf8_encode($cupon['descripcion']) ?></p>
-                    <p class="card-text">Precio Regular: $<?= utf8_encode($cupon['precio_regular']) ?></p>
-                    <p class="card-text">Descuento: <?= utf8_encode($cupon['porcentaje_oferta']) ?>%</p>
-                    <p class="card-text text-success">Nuevo valor
-                        $<?= $cupon['precio_regular'] - ($cupon['precio_regular'] * ($cupon['porcentaje_oferta'] * 0.01)) ?></p>
-                    <p class="card-text">Fecha
-                        Límite: <?= date_format(date_create($cupon['fecha_limite']), 'd/m/Y') ?></p>
-                    <p class="card-text">Stock: <?= utf8_encode($cupon['cantidad']) ?></p>
-
-                    <a href="#" class="btn btn-primary">Comprar</a>
                 </div>
-            </div>
 
-        <?php } ?>
+            <?php } ?>
 
 
+        </div>
     </div>
-
 
     <footer>
         <?php
