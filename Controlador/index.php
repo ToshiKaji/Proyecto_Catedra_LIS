@@ -126,8 +126,9 @@ class Controller {
             if($this->model->Validar_clientes($correo,$pwcli))
             {
                 $cliente = $this->model->Validar_clientes($correo,$pwcli);
-                $_SESSION['cliente'] = $cliente['Nombre'];
+                $_SESSION['cliente'];
                 header("location:../Cupones/CuponeraSession.php");
+                session_start();
             }
             else{
                 echo "<script>alert('El correo y/o la contraseña no son válidos.');
@@ -144,6 +145,7 @@ class Controller {
 
     public function CerrarSesion()
     {
+        session_start();
         session_unset();
         session_destroy();
         header("location:../Cupones/Inicio.php");
