@@ -17,6 +17,7 @@ if (!isset($_SESSION['cliente'])) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
                 crossorigin="anonymous"></script>
+                <link href="css/inicio.css">
         <title>La Cuponera</title>
     </head>
     <script>
@@ -100,7 +101,7 @@ if (!isset($_SESSION['cliente'])) {
             foreach ($data_recibida as $cupon) { ?>
                 <div class="card bg-dark text-white m-2 p-1 border-5" style="width: 18rem;">
 
-                    <img src="../Layout/img/cupon.png" class="card-img" alt="Cupon">
+                    <img src="<?= ($cupon['img']) ?>" class="card-img" alt="Cupon" height="150">
 
                     <hr>
                     <div class="card-body p-1">
