@@ -8,11 +8,11 @@
                                 <p>No te pierdas las mejores ofertas por nuestras redes sociales</p>  
                         </div>
                         <div class="col-md-2 text-light" style="padding-top:30px;">
-                                <img style="padding-right:5px;" src="../Layout/img/facebook.png" alt="">
-                                <img style="padding-right:5px;" src="../Layout/img/gorjeo.png" alt="">
-                                <img style="padding-right:5px;" src="../Layout/img/tik-tok.png" alt="">
+                                <img style="padding-right:5px;" src="<?php $root;echo PATH;?>/Vista/img/facebook.png" alt="">
+                                <img style="padding-right:5px;" src="<?php $root;echo PATH;?>/Vista/img/gorjeo.png" alt="">
+                                <img style="padding-right:5px;" src="<?php $root;echo PATH;?>/Vista/img/tik-tok.png" alt="">
                                 <a href="https://github.com/ToshiKaji/Proyecto_Catedra_LIS" target="_blank">
-                                <img style="padding-right:5px;" src="../Layout/img/github.png" alt="">
+                                <img style="padding-right:5px;" src="<?php $root;echo PATH;?>/Vista/img/github.png" alt="">
                                 </a>
                         </div>
                 </div>
@@ -28,9 +28,9 @@
                         </div>
                         <div class="col-md-5 text-light mb-4" style="padding-top:20px;">
                                 <p class="h4 mb-4">¿Necesitas ayuda? Contáctanos</p>       
-                                <p><img style="padding-right:5px;" src="../Layout/img/llamada-telefonica.png" alt=""> (+503) 1234-5678</p>
+                                <p><img style="padding-right:5px;" src="<?php $root;echo PATH;?>/Vista/img/llamada-telefonica.png" alt=""> (+503) 1234-5678</p>
                                 <a class="text-light" href="https://mail.google.com/mail" target="_blank">
-                                <img style="padding-right:5px;" src="../Layout/img/mensaje.png" alt="">
+                                <img style="padding-right:5px;" src="<?php $root;echo PATH;?>/Vista/img/mensaje.png" alt="">
                                 ventas.envio2023@gmail.com</a>
                         </div>
                 </div>

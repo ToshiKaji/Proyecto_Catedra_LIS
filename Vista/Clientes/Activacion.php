@@ -11,7 +11,7 @@
         <div class="container">
             <header>
             <?php
-                require_once('../Layout/Header.php');
+                require_once('Vista/Header.php');
             ?>
             </header>
             <div class="row">
@@ -19,9 +19,9 @@
                     <br><br><br><br><br>
                     <div class="card mb-5" style="width: 40rem;">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <form action="index.php" method="get">
+                            <form action="<?=PATH?>/Clientes/Activar_cuenta" method="post">
                                 <h4 class="mb-1 text-center py-3">Ingresa tu código y<br>verifica tu cuenta</h4>
-                                <input type="text" name="cod" class="form-control mb-2" placeholder="Código de verificación" 
+                                <input type="text" name="cod_verificacion" class="form-control mb-2" placeholder="Código de verificación" 
                                 style="width:22rem;" required>
                                 <button type="submit" name="verificar" class="btn btn-warning mb-2" 
                                 style="border-radius:20px; width:22rem;">Verificar cuenta</button>
@@ -34,7 +34,7 @@
         </div>
         <footer>
             <?php
-                include_once('../Layout/Footer.php');
+                include_once('Vista/Footer.php');
             ?>
         </footer>
     </body>

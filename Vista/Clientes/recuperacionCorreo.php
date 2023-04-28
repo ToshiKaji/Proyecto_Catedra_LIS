@@ -11,7 +11,7 @@
         <div class="container">
             <header>
             <?php
-                require_once('../Layout/Header.php');
+                 include 'Vista/Header.php';
             ?>
             </header>
             <div class="row">
@@ -28,7 +28,7 @@
                                 style="border-radius:20px; width:22rem;">Enviar correo de verificación</button>
                                 <input type="hidden" name="m" value="Recuperacion_Cuenta">
                                 <h6 class="text-center text-secondary">ó</h6>
-                                <a href="../Usuarios/login.php"><h6 class="text-center text-secondary">Volver a inicio de sesión</h6></a>
+                                <a href="<?=PATH?>/Clientes/Ingresar"><h6 class="text-center text-secondary">Volver a inicio de sesión</h6></a>
                             </form>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
         </div>
         <footer>
             <?php
-                include_once('../Layout/Footer.php');
+               include 'Vista/Footer.php';
             ?>
         </footer>
     </body>
