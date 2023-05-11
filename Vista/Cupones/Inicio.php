@@ -17,6 +17,8 @@
     
     ?>  
       <?php
+      my_session_start();
+      
         if(empty($viewBag))
         {?>
     <header>
@@ -78,7 +80,11 @@
             
             $data_recibida = $viewBag; //Cupones generados (Traidos desde la BD)
 
-            foreach ($data_recibida as $cupon) { ?>
+            foreach ($data_recibida as $cupon) { 
+              $_SESSION[$cupon['id_cu']."informacion"]['descripcion']=$cupon['descripcion'];
+              $_SESSION[$cupon['id_cu']."informacion"]['precio']=$cupon['precio_cupon'];
+              $_SESSION[$cupon['id_cu']."informacion"]['stock']=$cupon['cantidad_lim'];
+              ?>
 
                 <div class="card bg-dark text-white m-2 p-1 border-5" style="width: 18rem;">
 
@@ -86,21 +92,24 @@
 
                     <hr>
                     <div class="card-body p-1">
-                        <h5 class="card-title"><?= utf8_encode($cupon['titulo_oferta']) ?></h5>
-                        <p class="card-text"><?= utf8_encode($cupon['descripcion']) ?></p>
-                        <p class="card-text">Precio Regular: $<?= utf8_encode($cupon['precio_regular']) ?></p>
-                        <p class="card-text">Descuento: <?= utf8_encode($cupon['porc_oferta']) ?>%</p>
+                        <h5 class="card-title"><?=($cupon['titulo_oferta']) ?></h5>
+                        <p class="card-text"><?=($cupon['descripcion']) ?></p>
+                        <p class="card-text">Precio Regular: $<?=($cupon['precio_regular']) ?></p>
+                        <p class="card-text">Descuento: <?=($cupon['porc_oferta']) ?>%</p>
                         <p class="card-text text-success">Nuevo valor:
                             $<?= number_format($cupon['precio_regular'] - ($cupon['precio_regular'] * ($cupon['porc_oferta'] * 0.01)),
                                 2)
                             ?></p>
                         <p class="card-text">Fecha
                             Límite: <?= date_format(date_create($cupon['fecha_lim']), 'd/m/Y') ?></p>
-                        <p class="card-text">Stock: <?= utf8_encode($cupon['cantidad_lim']) ?></p>
+                            <?php
+                            $stock =$cupon['cantidad_lim']==null? "ilimitado": $cupon['cantidad_lim'];
+                             ?>
+                        <p class="card-text">Stock: <?=$stock ?></p>
                     </div>
                     <?php
 if (isset($_SESSION['cliente'])) {?>
-                    <a href="<?=PATH?>/Cupones/Completar_compra/<?php echo $cupon['id_cu'].'.'.$cupon['cod_empresa'].'.'.$_SESSION['cliente']['dui'].'.'.$_SESSION['cliente']['id_cli']?>" class="btn btn-success">Comprar</a>
+                    <a href="<?=PATH?>/Cupones/Completar_compra/<?php echo $cupon['id_cu'].'.'.$cupon['cod_empresa'].'.'.$_SESSION['cliente']['dui'].'.'.$_SESSION['cliente']['id_cli'].'.'.$cupon['cantidad_lim']?>" class="btn btn-success">Comprar</a>
 <?php
 }
 ?>

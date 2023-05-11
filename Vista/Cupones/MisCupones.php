@@ -59,7 +59,7 @@ include 'Vista/Header.php';
                                 <?php
                                 foreach($viewBag as $cupon)
                                 {
-                                $estado_canjeo=($cupon['canjeo']==1)? "Sin canjear":"Canjeado";                                  
+                                $estado_canjeo=($cupon['canjeo']==0)? "Sin canjear":"Canjeado";                                  
                                  ?>
                                  <td><?=$cupon['codigo_canjeo']?></td>
                                  <td><?=$estado_canjeo?></td>

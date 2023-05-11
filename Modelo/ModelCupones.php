@@ -9,12 +9,12 @@ class ModelCupones extends Model
         $categoria="%".$categoria_obtenida;
 
       if(empty($categoria)){
-  $query="SELECT * FROM cupones where activado=:activado AND fecha_ini <= CURDATE() AND fecha_fin >= CURDATE()";
+  $query="SELECT * FROM cupones where activado=:activado AND fecha_ini <= CURDATE() AND fecha_fin >= CURDATE() AND cantidad_lim IS NULL OR activado=:activado AND fecha_ini <= CURDATE() AND fecha_fin >= CURDATE() AND cantidad_lim !=0";
   $stmt = $this->conn->prepare($query);
   $stmt->bindParam('activado',$activado);
  
        }else{
-           $query="SELECT * FROM cupones where activado=:activado AND cod_empresa LIKE :categoria AND fecha_ini <= CURDATE() AND fecha_fin >= CURDATE()";
+           $query="SELECT * FROM cupones where activado=:activado AND cod_empresa LIKE :categoria AND fecha_ini <= CURDATE() AND fecha_fin >= CURDATE() AND  cantidad_lim IS NULL OR activado=:activado AND cod_empresa LIKE :categoria AND fecha_ini <= CURDATE() AND fecha_fin >= CURDATE() AND  cantidad_lim!=0";
            $stmt = $this->conn->prepare($query);
            $stmt->bindParam(':categoria',$categoria);
            $stmt->bindParam('activado',$activado);
@@ -35,6 +35,7 @@ class ModelCupones extends Model
      $codigo_canjeo=$info_array[0];
      $id_cliente=$info_array[1];
      $id_cupon=$info_array[2];
+     $stock=$info_array[3];
      $canjeo=0;
 
      $query="INSERT INTO cupones_comprados(codigo_canjeo,id_cliente,id_cupon,canjeo) VALUES (:codigo_canjeo,:id_cliente,:id_cupon,:canjeo)";
@@ -44,6 +45,16 @@ class ModelCupones extends Model
      $stmt->bindParam(':id_cupon',$id_cupon);
      $stmt->bindParam(':canjeo',$canjeo);
      $stmt->execute();
+
+     if($stock!=null)
+     {  
+        $query="UPDATE cupones SET cantidad_lim=cantidad_lim - 1 WHERE id_cu=:id_cupon";
+        $stmt=$this->conn->prepare($query);
+        $stmt->bindParam(':id_cupon',$id_cupon);
+        $stmt->execute();
+
+
+     }
 
     }
 

@@ -25,7 +25,7 @@ class ControllerCupones extends Controller
         $codigo=$info;
         $codigo=explode(".",$codigo);
 
-$this->render('Compra.php',$codigo);
+        $this->render('Compra.php',$codigo);
     }
 
     public function Mis_cupones($id_cliente)

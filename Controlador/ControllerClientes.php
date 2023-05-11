@@ -27,7 +27,7 @@ class ControllerClientes extends Controller
                  
                  $cliente_nuevo=array();
  
-                 $user=2;
+                 $user=4;
                  $telefono=$_POST['telefono'];
                  $cliente_nuevo['telefono']=$telefono;
                  $correo=$_POST['correo'];
